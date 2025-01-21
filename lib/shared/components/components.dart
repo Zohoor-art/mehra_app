@@ -101,13 +101,15 @@ Widget gradientColor ()=>Container(
             ],
           );
         
-        Widget GradientButton({
+        Widget GradientButton( {
           required VoidCallback  onPressed,
-          required text
+          required text,
+          double? width ,
+          double? height
         }) {
           return Container(
-              width: 171.86,
-              height: 46,
+              width: width,
+              height: height,
               decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
@@ -126,6 +128,7 @@ Widget gradientColor ()=>Container(
             spreadRadius: 1,
           ),
         ],
+        
               ),
               child: TextButton(
         onPressed: onPressed,
@@ -139,5 +142,53 @@ Widget gradientColor ()=>Container(
               ),
             );
         }
+ Widget buildWhiteButton({ required text,required VoidCallback onPressed}) {
+    return Container(
+      width: 336,
+      height: 69,
+      decoration: BoxDecoration(
+        color: Colors.white, // Set background color to white
+        borderRadius: BorderRadius.circular(20),
+      //   border: Border.all(
+      //     //color: const Color.fromARGB(255, 125, 52, 193),
+
+      //  // Border color
+      //     width: 2, // Border width
+      //   ),
+        boxShadow: [
+          
+          BoxShadow(
+           color:  Color(0xFF4423B1), // Drop shadow color
+            spreadRadius: 2,
+            blurRadius: 5,
+          
+            offset: Offset(0, 3), // Changes position of shadow
+          ),
+        ],
+      ),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center, // Center the content
+          children: [
+           Image.asset(
+  'assets/google.png', // اسم الصورة
+  width: 30, // عرض الصورة (يمكنك تعديله حسب الحاجة)
+  height: 30, // ارتفاع الصورة (يمكنك تعديله حسب الحاجة)
+),
+            SizedBox(width: 25), // Space between icon and text
+            Text(
+              text,
+              style: TextStyle(
+                color: const Color.fromARGB(255, 60, 19, 130), // Change text color to black for visibility
+                fontSize: 23,
+                fontWeight: FontWeight.bold, // Make the text bold
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
 
