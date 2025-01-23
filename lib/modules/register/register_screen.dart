@@ -20,7 +20,7 @@ class RegisterScreen extends StatelessWidget {
           buildWhiteButton(text: 'متابعة بحساب قوقل',  onPressed: () {  }),
           SizedBox(height: 20), // Space between button and text
           Text(
-            'ليس لديك حساب! انشئ حساب',
+            'هل لديك حساب! تسجيل الدخول',
             style: TextStyle(
               fontSize: 18,
               color: Colors.black,
