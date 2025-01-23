@@ -86,6 +86,7 @@ Widget gradientColor ()=>Container(
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
+              
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Container(
