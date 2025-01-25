@@ -10,4 +10,7 @@ class MyColor {
   // ignore: non_constant_identifier_names
   static Color LightSearchColor = Color(0xffFFFFFF);
   static Color darkprimaryColor = Color(0xff121216);
+    static Color backcardsetting = Color(0xffE9DCF0);
+
+  
 }
