@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mehra_app/modules/notifications/Notification.dart';
+import 'package:mehra_app/modules/onbording/onboarding_screen.dart';
+
+import 'package:mehra_app/modules/register/register_screen.dart';
+import 'package:mehra_app/modules/register/sign_up.dart';
 
 
 void main() {
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: Notifications()),
+        child: SignUpscreen()),
     );
   }
 }

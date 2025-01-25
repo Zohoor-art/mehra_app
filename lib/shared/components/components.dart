@@ -103,73 +103,69 @@ Widget GradientButton(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: const [
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
         BoxShadow(
-          color: Colors.black26,
-          offset: Offset(0, 0),
-          blurRadius: 8,
+          color: Colors.black.withOpacity(0.2), // ظل خفيف
           spreadRadius: 1,
+          blurRadius: 7,
+          offset: Offset(0, 3), // موضع الظل
         ),
       ],
     ),
     child: TextButton(
       onPressed: onPressed,
       child: Text(
+        textAlign: TextAlign.center,
         text,
         style: const TextStyle(
-            color: Colors.white, 
-            fontSize: 14, 
-            fontFamily: 'Tajawal'),
+            color: Colors.white, fontSize: 22, fontFamily: 'Tajawal'),
       ),
     ),
   );
 }
 
-Widget buildWhiteButton({required text, required VoidCallback onPressed}) {
+Widget buildGoogleButton(
+    {required String text, required VoidCallback onPressed}) {
   return Container(
-    width: 336,
-    height: 69,
+    width: 346,
+    height: 75,
     decoration: BoxDecoration(
-      color: Colors.white, // Set background color to white
+      color: Colors.white, // خلفية بيضاء
       borderRadius: BorderRadius.circular(20),
-      //   border: Border.all(
-      //     //color: const Color.fromARGB(255, 125, 52, 193),
-
-      //  // Border color
-      //     width: 2, // Border width
-      //   ),
       boxShadow: [
         BoxShadow(
-          color: Color(0xFF4423B1), // Drop shadow color
-          spreadRadius: 2,
-          blurRadius: 5,
-
-          offset: Offset(0, 3), // Changes position of shadow
+          color: Colors.black.withOpacity(0.2), // ظل خفيف
+          spreadRadius: 1,
+          blurRadius: 7,
+          offset: Offset(0, 3), // موضع الظل
         ),
       ],
     ),
     child: TextButton(
       onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // Center the content
-        children: [
-          Image.asset(
-            'assets/google.png', // اسم الصورة
-            width: 30, // عرض الصورة (يمكنك تعديله حسب الحاجة)
-            height: 30, // ارتفاع الصورة (يمكنك تعديله حسب الحاجة)
-          ),
-          SizedBox(width: 25), // Space between icon and text
-          Text(
-            text,
-            style: TextStyle(
-              color: const Color.fromARGB(255, 60, 19,
-                  130), // Change text color to black for visibility
-              fontSize: 23,
-              fontWeight: FontWeight.bold, // Make the text bold
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            Image.asset(
+              'assets/images/google.png', // مسار الأيقونة
+              width: 42, // عرض الأيقونة
+              height: 42, // ارتفاع الأيقونة
             ),
-          ),
-        ],
+            SizedBox(width: 15),
+
+            // المسافة بين الأيقونة والنص
+            Text(
+              text,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 23,
+                fontWeight: FontWeight.w500, // جعل النص عريض
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -197,11 +193,11 @@ class SettingTile extends StatelessWidget {
   final Widget trailing;
   final CrossAxisAlignment alignment;
 
-  SettingTile({
-    required this.title, 
-    required this.icon, 
-    required this.trailing, 
-    required this.alignment});
+  SettingTile(
+      {required this.title,
+      required this.icon,
+      required this.trailing,
+      required this.alignment});
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +208,7 @@ class SettingTile extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         height: 70,
         decoration: BoxDecoration(
-          color:MyColor.backcardsetting,
+          color: MyColor.backcardsetting,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(
@@ -242,3 +238,54 @@ class SettingTile extends StatelessWidget {
     );
   }
 }
+
+Widget defultTextFormField({
+  required TextEditingController controller,
+  required TextInputType type,
+  void Function(String)? onSubmit,
+  void Function(String)? onChanged,
+  required String? Function(String?) validate,
+  required String label,
+  required IconData prefix,
+  IconData? suffix,
+  bool ispassword = false,
+  void Function()? suffixPressed,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChanged,
+      style: TextStyle(fontSize: 18),
+      validator: validate,
+      obscureText: ispassword,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(fontSize: 18), 
+        prefixIcon: Icon(prefix, color: MyColor.purpleColor), // لون الأيقونة بنفسجي
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(suffix, color: MyColor.purpleColor), // لون الأيقونة بنفسجي
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: MyColor.purpleColor, // لون البوردر بنفسجي
+            width: 2.0, // سمك البوردر
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: MyColor.purpleColor, // لون البوردر عند التمكين
+            width: 2.0, // سمك البوردر عند التمكين
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: MyColor.blueColor, // لون البوردر عند التركيز
+            width: 2.5, // سمك البوردر عند التركيز
+          ),
+        ),
+      ),
+    );

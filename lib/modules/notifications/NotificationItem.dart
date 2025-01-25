@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mehra_app/shared/components/components.dart';
 
-class NotificationItem extends StatefulWidget {
+class NotificationItem extends StatelessWidget {
   final String username;
   final String action;
   final String time;
   final String avatarUrl;
+  final bool showButton; // تحدد ما إذا كان يجب عرض الزر
 
   const NotificationItem({
     Key? key,
@@ -13,14 +14,8 @@ class NotificationItem extends StatefulWidget {
     required this.action,
     required this.time,
     required this.avatarUrl,
+    required this.showButton, // إضافة المعامل هنا
   }) : super(key: key);
-
-  @override
-  _NotificationItemState createState() => _NotificationItemState();
-}
-
-class _NotificationItemState extends State<NotificationItem> {
-  bool _isFollowed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,30 +27,56 @@ class _NotificationItemState extends State<NotificationItem> {
           Row(
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(widget.avatarUrl),
+                backgroundImage: AssetImage(avatarUrl,
+                ),
+                radius: 35,
               ),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${widget.username} ${widget.action}',
-                    style: TextStyle(fontSize: 20), // تكبير الخط هنا
+                    '$username $action',
+                    style: TextStyle(fontSize: 20),
                   ),
                   Text(
-                    widget.time,
-                    style: TextStyle(color: Colors.grey, fontSize: 16), // تكبير الخط هنا
+                    time,
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                 ],
               ),
             ],
           ),
-          GradientButton(
-            onPressed: () {},
-            text: 'رد المتابعة ',
-            width: 101,
-            height: 38,
-          ),
+          if (showButton) // عرض الزر فقط إذا كان showButton صحيحًا
+            GradientButton(
+              onPressed: () {},
+              text: 'رد المتابعة',
+              width: 101,
+              height: 38,
+            ),
+          if (!showButton) // عرض الصورة إذا كان showButton غير صحيح
+            Container(
+              width: 85,
+              height: 75,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), // زاوية مدورة
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
+                    blurRadius: 6,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10), // زاوية مدورة للصورة
+                child: Image.asset(
+                  avatarUrl, // استبدل بالصورة المناسبة
+                  fit: BoxFit.cover, // لتغطية المساحة بالكامل
+                ),
+              ),
+            ),
         ],
       ),
     );
