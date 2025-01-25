@@ -11,6 +11,7 @@ class RegisterScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
           Padding(
             padding: const EdgeInsets.only(top: 200),
             child: Container(
@@ -40,6 +41,21 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ],
               ),
+
+          Expanded(child: Container(
+          )), // This expands to take available space
+          GradientButton(  onPressed: () {  },text: 'المتابعة بدون تسجيل دخول',width: 336 ,height: 69 ),
+          SizedBox(height: 50), // Space between buttons
+         GradientButton(  onPressed: () {  },text: 'انشاء حساب تجاري ' ,width: 336 ,height: 69),
+          SizedBox(height: 50),
+          buildWhiteButton(text: 'متابعة بحساب قوقل',  onPressed: () {  }),
+          SizedBox(height: 20), // Space between button and text
+          Text(
+            'هل لديك حساب! تسجيل الدخول',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+
             ),
           ),
           SizedBox(height: 20), // Space between text and image

@@ -63,6 +63,7 @@ Widget buildOnboardingItem(BoardingModel model) => Column(
       ],
     );
 
+
 Widget bottomImage() => Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -70,6 +71,49 @@ Widget bottomImage() => Stack(
           image: AssetImage('assets/bottom.png'),
           width: double.infinity,
           fit: BoxFit.cover,
+
+    Widget bottomImage ()=>  Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Image(
+                image: AssetImage('assets/bottom.png'),
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  width: 135,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5F5F5),
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                  alignment: Alignment.center,
+                ),
+              ),
+            ],
+          );
+        
+        Widget GradientButton( {
+          required VoidCallback  onPressed,
+          required text,
+          double? width ,
+          double? height
+        }) {
+          return Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF4423B1),
+            Color(0xFFA02D87),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+
         ),
         Padding(
           padding: const EdgeInsets.all(20),
